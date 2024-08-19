@@ -1,0 +1,41 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "codegen": "graphql-codegen --config codegen.ts"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.11.0",
+    "@as-integrations/h3": "^1.2.1",
+    "@discordjs/voice": "^0.17.0",
+    "@graphql-tools/schema": "^10.0.5",
+    "@prisma/client": "5.18.0",
+    "discord.js": "^14.15.3",
+    "graphql": "^16.9.0",
+    "graphql-redis-subscriptions": "^2.6.1",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.16.0",
+    "libsodium-wrappers": "^0.7.15",
+    "lodash": "^4.17.21",
+    "nuxt": "^3.12.4",
+    "nuxt-graphql-server": "^3.1.4",
+    "uuid": "^10.0.0",
+    "vue": "latest"
+  },
+  "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf",
+  "devDependencies": {
+    "@eddeee888/gcg-typescript-resolver-files": "^0.10.4",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.9",
+    "@graphql-codegen/typescript-resolvers": "^4.2.1",
+    "@types/lodash": "^4.17.7",
+    "@types/uuid": "^10.0.0",
+    "prisma": "5.18.0"
+  }
+}

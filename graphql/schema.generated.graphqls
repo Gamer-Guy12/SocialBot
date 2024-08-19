@@ -1,0 +1,67 @@
+type Channel {
+  id: String!
+  messages: [Message!]
+  name: String!
+  nonGulag: Boolean!
+  response: String
+  status: Status!
+  type: ChannelType
+}
+
+enum ChannelType {
+  Text
+  Video
+}
+
+type Message {
+  channel: Channel
+  content: String!
+  createdAt: String!
+  id: String!
+  response: String
+  sender: User
+  status: Status!
+}
+
+type Mutation {
+  login(password: String!): Session!
+  sendMessage(channel: String!, content: String!, session: String!): Message!
+}
+
+type Query {
+  allMessages(session: String!): [Message!]!
+  channel(id: String!, session: String!): Channel!
+  channels: [Channel!]!
+  message(id: String!): Message!
+  messages(channel: String!, session: String!): [Message!]!
+  user(id: String!): User!
+  users: [User!]!
+}
+
+type Session {
+  id: String!
+  response: String
+  status: Status!
+  user: User
+}
+
+enum Status {
+  Fail
+  Success
+}
+
+type Subscription {
+  onMessageSent: Message!
+  onMessageSentInChannel(channel: String!): Message!
+}
+
+type User {
+  gulag: Boolean!
+  id: String!
+  leader: Boolean!
+  messages: [Message!]
+  name: String!
+  response: String
+  socialCredit: Int!
+  status: Status!
+}
