@@ -5,7 +5,7 @@ type Query {
     messages(channel: String!, session: String!): [Message!]!
     allMessages(session: String!): [Message!]!
     channel(id: String!, session: String!): Channel!
-    channels: [Channel!]!
+    channels(session: String!): [Channel!]!
 }
 
 type Mutation {
@@ -14,8 +14,7 @@ type Mutation {
 }
 
 type Subscription {
-    onMessageSent: Message!
-    onMessageSentInChannel(channel: String!): Message!
+    onMessageSentInChannel(channel: String!, session: String!): Message!
 }
 
 type User {

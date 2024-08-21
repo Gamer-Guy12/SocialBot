@@ -31,7 +31,7 @@ type Mutation {
 type Query {
   allMessages(session: String!): [Message!]!
   channel(id: String!, session: String!): Channel!
-  channels: [Channel!]!
+  channels(session: String!): [Channel!]!
   message(id: String!): Message!
   messages(channel: String!, session: String!): [Message!]!
   user(id: String!): User!
@@ -51,8 +51,7 @@ enum Status {
 }
 
 type Subscription {
-  onMessageSent: Message!
-  onMessageSentInChannel(channel: String!): Message!
+  onMessageSentInChannel(channel: String!, session: String!): Message!
 }
 
 type User {

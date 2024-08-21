@@ -5,6 +5,17 @@ export const channels: NonNullable<QueryResolvers['channels']> = async (_parent,
         const record = await prisma.channel.findMany()
         const ret: Channel[] = []
 
+        const locked = (process.env.GULAG_LOCKED as string).split(",")
+
+        const session = await prisma.session.findUnique({
+                where: {
+                        id: _arg.session
+                },
+                include: {
+                        User: true
+                }
+        })
+
         record.forEach(val => {
                 ret.push({
                         id: val.id,
@@ -14,5 +25,11 @@ export const channels: NonNullable<QueryResolvers['channels']> = async (_parent,
                 })
         })
 
-        return ret
+        return ret.filter(val => {
+                if (session?.User.gulag && val.nonGulag) {
+                        return false
+                }
+
+                return true
+        })
 }

@@ -85,6 +85,11 @@ export type QuerychannelArgs = {
 };
 
 
+export type QuerychannelsArgs = {
+  session: Scalars['String']['input'];
+};
+
+
 export type QuerymessageArgs = {
   id: Scalars['String']['input'];
 };
@@ -114,13 +119,13 @@ export type Status =
 
 export type Subscription = {
   __typename?: 'Subscription';
-  onMessageSent: Message;
   onMessageSentInChannel: Message;
 };
 
 
 export type SubscriptiononMessageSentInChannelArgs = {
   channel: Scalars['String']['input'];
+  session: Scalars['String']['input'];
 };
 
 export type User = {
@@ -266,7 +271,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   allMessages?: Resolver<Array<ResolversTypes['Message']>, ParentType, ContextType, RequireFields<QueryallMessagesArgs, 'session'>>;
   channel?: Resolver<ResolversTypes['Channel'], ParentType, ContextType, RequireFields<QuerychannelArgs, 'id' | 'session'>>;
-  channels?: Resolver<Array<ResolversTypes['Channel']>, ParentType, ContextType>;
+  channels?: Resolver<Array<ResolversTypes['Channel']>, ParentType, ContextType, RequireFields<QuerychannelsArgs, 'session'>>;
   message?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<QuerymessageArgs, 'id'>>;
   messages?: Resolver<Array<ResolversTypes['Message']>, ParentType, ContextType, RequireFields<QuerymessagesArgs, 'channel' | 'session'>>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryuserArgs, 'id'>>;
@@ -284,8 +289,7 @@ export type SessionResolvers<ContextType = any, ParentType extends ResolversPare
 export type StatusResolvers = EnumResolverSignature<{ Fail?: any, Success?: any }, ResolversTypes['Status']>;
 
 export type SubscriptionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = {
-  onMessageSent?: SubscriptionResolver<ResolversTypes['Message'], "onMessageSent", ParentType, ContextType>;
-  onMessageSentInChannel?: SubscriptionResolver<ResolversTypes['Message'], "onMessageSentInChannel", ParentType, ContextType, RequireFields<SubscriptiononMessageSentInChannelArgs, 'channel'>>;
+  onMessageSentInChannel?: SubscriptionResolver<ResolversTypes['Message'], "onMessageSentInChannel", ParentType, ContextType, RequireFields<SubscriptiononMessageSentInChannelArgs, 'channel' | 'session'>>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
